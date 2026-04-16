@@ -34,12 +34,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Meta Pixel WhatsApp Click Tracking
+// Meta Pixel WhatsApp Click Tracking & Link Automation
 document.addEventListener('DOMContentLoaded', () => {
-    const waButtons = document.querySelectorAll('.btn-wa');
+    const waButtons = document.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"], .btn-wa');
     
     waButtons.forEach(button => {
-        button.addEventListener('click', () => {
+        // Automatically add target="_blank" for seamless tracking and better UX
+        if (button.tagName === 'A') {
+            button.setAttribute('target', '_blank');
+            button.setAttribute('rel', 'noopener noreferrer');
+        }
+
+        button.addEventListener('click', (e) => {
             const label = button.getAttribute('data-label') || 'General WhatsApp';
             
             // Trigger Meta Pixel Event
@@ -52,6 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 console.warn('Meta Pixel (fbq) not loaded yet.');
             }
+            
+            // Note: because we use target="_blank", the page doesn't unload, 
+            // so the Pixel event has plenty of time to fire correctly.
         });
     });
 });
