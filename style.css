@@ -249,3 +249,70 @@ h2 {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* FAQ Accordion */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--white);
+    margin-bottom: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.faq-item.active {
+    border-color: var(--secondary);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.faq-question {
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #fdfdfd;
+}
+
+.faq-answer p {
+    padding: 24px 30px;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(0,0,0,0.03);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px; /* Adjust as needed */
+}
+
+/* Spacing Optimization */
+.faq-section {
+    padding-bottom: 0px; /* Merapatkan ke bawah */
+}
+
+.action {
+    padding-top: 40px; /* Menjaga jarak secukupnya di bagian atas CTA Box */
+}
